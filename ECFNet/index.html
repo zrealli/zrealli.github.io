@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="The Devil is in the Edges: Monocular Depth Estimation with Edge-aware Consistency Fusion">
+  <meta name="keywords" content="depth estimation, depth refinement">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <title>The Devil is in the Edges: Monocular Depth Estimation with Edge-aware Consistency Fusion</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FWSVCGZTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-1FWSVCGZTG');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/bulma.min.css">
+  <link rel="stylesheet" href="./css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./css/twentytwenty.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <!-- <link rel="icon" href="./images/.svg"> -->
+
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/jquery.event.move.js"></script>
+  <script src="./js/jquery.twentytwenty.js"></script>
+  <script src="./js/bulma-carousel.min.js"></script>
+  <script src="./js/bulma-slider.min.js"></script>
+  <script src="./js/fontawesome.all.min.js"></script>
+
+  <!--MathJax-->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">The Devil is in the Edges: Monocular Depth Estimation with Edge-aware Consistency Fusion</h1>
+   
+          <div class="is-size-5 publication-authors">
+           
+            <span class="author-block">
+              <a href="https://zrealli.github.io" rel="noopener noreferrer">
+                Pengzhi Li</a>,
+                <!-- <sup>1</sup>, -->
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Yikang Ding</a>,
+                <!-- <sup>2</sup>, -->
+            </span>
+
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Haohan Wang</a>,
+                <!-- <sup>1</sup> -->
+
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+               Chengshuai Tang</a>,
+                <!-- <sup>1</sup> -->
+
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Zhiheng Li</a>
+                <!-- <sup>1</sup> -->
+
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"> <sup>1</sup>Tsinghua Shenzhen International Graduate School, Tsinghua University</span>
+          </div>
+
+
+ 
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://dl.acm.org/doi/abs/" target="_blank" rel="noopener noreferrer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf" style="color: rgb(255, 255, 255)"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/unlimitedli/ECFNet" target="_blank" rel="noopener noreferrer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<script>
+  $(window).on('load', function() {
+    bulmaCarousel.attach('#results-carousel-horizontal', {
+      slidesToScroll: 1,
+      slidesToShow: 3,
+      loop: true,
+      autoplay: true,
+    });
+
+    bulmaCarousel.attach('#results-carousel-vertical', {
+      slidesToScroll: 1,
+      slidesToShow: 5,
+      loop: true,
+      autoplay: true,
+    });
+
+    $(".twentytwenty-container-top").twentytwenty({
+      before_label: 'Input',
+      after_label: 'Ours',
+      default_offset_pct: 0.75,
+    });
+    $(".twentytwenty-container-bottom").twentytwenty({
+      before_label: 'DPT',
+      after_label: 'Ours',
+      default_offset_pct: 0.5,
+    });
+  });
+</script>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img id="teaser" width="100%" src="./images/edge_nonedge.pdf" alt="T." />
+      <!-- <h2 class="subtitle has-text-centered"> -->
+        <a style="font-size: 18px; color: black; ">We explore and validate that  <b style="color:#38a4ff;">relying solely on edge map input can yield sharper depth maps</b>. 
+          For each triplet in the firsr row, we showcase the RGB image, the edge-highlighted map, the edge map, and their corresponding depth maps predicted by pre-trained DPT.
+           </a>
+           </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel-horizontal" class="carousel results-carousel">
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./images/a3.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/a2.png">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./images/a1.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/a2.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./images/b3.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/b2.png">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./images/b1.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/b2.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./images/c3.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/c2.png">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./images/c1.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/c2.png">
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./images/d3.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/d2.png">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./images/d1.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/d2.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./images/e3.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/e2.png">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./images/e1.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/e2.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./images/f3.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/f2.png">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./images/f1.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/f2.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./images/g3.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/g2.png">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./images/g1.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/g2.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./images/h3.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/h2.png">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./images/h1.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/h2.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./images/i3.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/i2.png">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./images/i1.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/i2.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./images/j3.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/j2.png">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./images/j1.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/j2.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./images/k3.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/k2.png">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./images/k1.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/k2.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./images/l3.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/l2.png">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./images/l1.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/l2.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./images/m3.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/m2.png">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./images/m1.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/m2.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./images/n3.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/n2.png">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./images/n1.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/n2.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./images/o3.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/o2.png">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./images/o1.png">
+            </div>
+            <div class="cmpcontent">
+              <img src="./images/o2.png">
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Edge plays a critical role in depth estimation</h2>
+        <div class="content has-text-justified">
+          <p>
+            Comparison of different edge maps and their corresponding depth maps. 
+            (a) the RGB image, (b) the Sobel edge map, (c) our edge map, and (d) the ground truth edge map. 
+            As the quality of the edge map improves, the corresponding depth map can capture more depth details (ignoring structural distortion).          </p>
+
+          <img id="method_train" width="100%" src="./images/edge_compare.pdf" alt="e"/>
+          We employ edge maps as structural control conditions and generate a large number of synthetic images using ControlNet and stable diffusion models. 
+          These images have almost identical edge information but distinct textures and materials. 
+          But the depth maps are highly similar due to their highly consistent edge structure information, which further corroborates the crucial role of edge information in depth estimation.
+        <img id="method_train" width="100%" src="./images/diffusion_edge.jpg" alt="e"/>
+
+
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <!-- <h2 class="title is-3">Method</h2> -->
+
+        <div class="content has-text-justified">
+          <h3 class="title has-text-centered" class="title is-3">
+            Method
+          </h3>
+          <p>
+            Based on these observations, we propose a framework named ECFNet. 
+            Given an image, ECFNet first extracts the edge map and computes the edge-highlighted image by removing edge pixels. 
+            These three images (including the original image) are fed into a frozen MDE network to predict initial depth maps as well. 
+            Subsequently, the initial depths are fused using LFM. Finally, the DCM is used to reduce the errors in fused depth from LFM and improve the depth consistency between the final depth and initial depth.
+          <img id="method_train" width="100%" src="./images/pipeline_37.pdf" alt="e"/>
+  
+
+  
+          <h3 class="title has-text-centered" class="title is-3">
+            Experiments
+          </h3>
+
+          <p>
+            We evaluate our method in three commonly used datasets, DIODE, IBims-1, and NYU-v2. 
+            We adopt the SqRel, AbsRel and RMSE, as the standard evaluation metrics, and ordinal error (ORD) to reveal finer details when evaluating with degraded images. 
+            We also use Edge Square Relative error (ESR and EcSR) to evaluate the edge depth quality. 
+            More details about these metrics are provided in the supplementary material. 
+            Besides, since depth suffers from scale ambiguity, we follow the standard depth evaluation protocol to align the predicted depth and the ground truth depth using the least squares method. 
+        </p>
+
+          <img id="comparison" width="100%" src="./images/metric.png" alt="s"/>
+
+          <h3 class="title has-text-centered">
+            Potential applications
+          </h3>
+
+          <p>
+            Due to the diverse categories of artistic creations, existing depth estimation techniques struggle to accurately obtain depth maps for artistic images, which poses challenges for downstream tasks such as 3D photos and bokeh. 
+          </p>
+
+          <img id="comparison" width="100%" src="./images/bokeh.pdf" alt="s"/>
+
+
+          <p class="mt-5">
+            Refer to the pdf paper linked above for more details on qualitative, quantitative, and ablation studies.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+  </div>
+</section>
+
+
+<section class="section pt-0" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Citation</h2>
+    <pre class="selectable"><code>
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer pt-4 pb-0">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website template based on
+            <a href="https://github.com/nerfies/nerfies.github.io">
+              Nerfies
+            </a>
+            and licensed under
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+              CC-BY-SA-4.0
+            </a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
