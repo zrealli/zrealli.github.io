@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Towards Practical Consistent Video Depth Estimation">
+  <meta name="keywords" content="depth, estimation, monocular, scene">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <title>Towards Practical Consistent Video Depth Estimation</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FWSVCGZTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-1FWSVCGZTG');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/bulma.min.css">
+  <link rel="stylesheet" href="./css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./css/twentytwenty.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <!-- <link rel="icon" href="./images/favicon.svg"> -->
+
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/jquery.event.move.js"></script>
+  <script src="./js/jquery.twentytwenty.js"></script>
+  <script src="./js/bulma-carousel.min.js"></script>
+  <script src="./js/bulma-slider.min.js"></script>
+  <script src="./js/fontawesome.all.min.js"></script>
+
+  <!--MathJax-->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Towards Practical Consistent Video Depth Estimation</h1>
+   
+          <div class="is-size-5 publication-authors">
+           
+            <span class="author-block">
+              <a href="index.html" rel="noopener noreferrer">
+                Pengzhi Li</a>
+                <sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Yikang Ding</a>
+                <sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Linge Li</a>
+                <sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Jingwei Guan</a>
+                <sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Zhiheng Li</a>
+                <sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> Tsinghua Shenzhen International Graduate School, Tsinghua University, <sup>2</sup> Huawei</span>
+          </div>
+
+          <a style="font-size: 22px; color: black; ">ICMR 2023 (Oral presentation)</a>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://dl.acm.org/doi/abs/10.1145/3591106.3592264" target="_blank" rel="noopener noreferrer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf" style="color: rgb(255, 255, 255)"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/zrealli/pcvd" target="_blank" rel="noopener noreferrer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+
+          
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img id="teaser" width="100%" src="./images/01.jpg" alt="T."/>
+      <!-- <h2 class="subtitle has-text-centered"> -->
+        Our method achieves much faster speed. Specifically, for a video of 50 frames, our method runs 780 $\times$ faster than the state-of-the-art method RCVD.
+      <!-- </h2> -->
+    </div>
+  </div>
+</section>
+
+
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            In this work, we present a data-driven post-processing method to overcome these challenges and achieve online processing.
+             Based on a deep recurrent network, our method takes the adjacent original and optimized depth map as inputs to learn temporal consistency from the dataset and achieves higher depth accuracy. 
+             Our approach can be applied to multiple single-frame depth estimation models and used for various real-world scenes in real-time. 
+             In addition, to tackle the lack of a temporally consistent video depth training dataset of dynamic scenes, we propose an approach to generate the training video sequences dataset from a single image based on inferring motion field. 
+            
+          </p>
+
+          <p>
+            To the best of our knowledge, this is the first data-driven plug-and-play method (as of Feb. 2023)to improve the temporal consistency of depth estimation for casual videos. 
+            Extensive experiments on three datasets and three depth estimation models show that our method outperforms the state-of-the-art methods.
+           
+          </p>
+          <img id="method_train" width="100%" src="./images/2023pcvd.mp4" alt="e"/>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+
+<script>
+  $(window).on('load', function() {
+    bulmaCarousel.attach('#results-carousel-horizontal', {
+      slidesToScroll: 1,
+      slidesToShow: 3,
+      loop: true,
+      autoplay: true,
+    });
+
+    bulmaCarousel.attach('#results-carousel-vertical', {
+      slidesToScroll: 1,
+      slidesToShow: 5,
+      loop: true,
+      autoplay: true,
+    });
+
+    $(".twentytwenty-container-top").twentytwenty({
+      before_label: 'Input',
+      after_label: 'Ours',
+      default_offset_pct: 0.75,
+    });
+    $(".twentytwenty-container-bottom").twentytwenty({
+      before_label: 'LeRes',
+      after_label: 'Ours',
+      default_offset_pct: 0.5,
+    });
+  });
+</script>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Method Pipeline. Our system takes the consecutive RGB frames as the input. 
+            We first estimate the initial depth map for each frame using a depth prediction module. 
+            Then, initial adjacent depth maps are fed into the temporal consistency module to predict consistent depth maps.
+             During training, the depth prediction module is kept fixed, and we only train the temporal consistency module. 
+             At inference stage, our method takes ${D}_{n}$ and ${D}_{n+1}$ as input and output the consistent prediction depth of ${D}_{n+1}$. ${D}_{n}$ is the original depth maps,  ${P}_{n}$ is the optimized consistent depth maps.  ${G}_{n}$ is the ground truth depth maps.
+          </p>
+          <img id="method_train" width="100%" src="./images/02.jpg" alt="e"/>
+  
+          <h3 class="title has-text-centered">
+            Video Depth Data Generation
+          </h3>
+
+          <p style="text-align: left;">
+            Example of our video depth generation approach. (a) Segmentation mask predicted by Detectron2. 
+            (b) The optical flow predicted by a single frame. (c) The original frame and the next warped frame using (b). 
+            (d) The original depth map and the next warped depth map using (b).
+        </p>
+        
+          <img id="method_train" width="100%" src="./images/03.jpg" alt="e"/>
+
+
+
+  
+          <h3 class="title has-text-centered">
+            Comparison with other methods
+          </h3>
+
+          <p>
+
+          Quantitative comparison of depth on Sintel dataset. 
+          We evaluate three state-of-the-art single-frame depth prediction methods and three video depth prediction methods. 
+          Note that we don't evaluate the metrics of CVD as it fails to train on many sequences due to its reliability on COLMAP in estimating the camera pose. 
+          Our method improves the metrics of depth maps of all single-frame depth prediction methods. Compared with the methods aiming to produce consistent video depth, our method achieves state-of-the-art performance.
+        </p>
+
+          <img id="comparison" width="100%" src="./images/11.png" alt="s"/>
+
+          <h3 class="title has-text-centered">
+            Applications
+          </h3>
+
+          <p>
+            Many video special effects can be created with consistent video depth.
+            Such as stable bokeh effect and insertion. Our method can be conveniently implemented for screen editing tasks.
+          </p>
+
+          <img id="comparison" width="100%" src="./images/09.jpg" alt="s"/>
+
+
+          <p class="mt-5">
+            Refer to the pdf paper linked above for more details on qualitative, quantitative, and ablation studies.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+  </div>
+</section>
+
+
+<section class="section pt-0" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Citation</h2>
+    <pre class="selectable"><code>@inproceedings{li2023towards,
+      title={Towards Practical Consistent Video Depth Estimation},
+      author={Li, Pengzhi and Ding, Yikang and Li, Linge and Guan, Jingwei and Li, Zhiheng},
+      booktitle={Proceedings of the 2023 ACM International Conference on Multimedia Retrieval},
+      pages={388--397},
+      year={2023}
+    }
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer pt-4 pb-0">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website template based on
+            <a href="https://github.com/nerfies/nerfies.github.io">
+              Nerfies
+            </a>
+            and licensed under
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+              CC-BY-SA-4.0
+            </a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
