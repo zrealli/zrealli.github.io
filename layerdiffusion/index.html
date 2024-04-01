@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="LayerDiffusion: Layered Controlled Image Editing with Diffusion Models">
+  <meta name="keywords" content="image editing, diffusion model">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <title>LayerDiffusion: Layered Controlled Image Editing with Diffusion Models</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FWSVCGZTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-1FWSVCGZTG');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/bulma.min.css">
+  <link rel="stylesheet" href="./css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./css/twentytwenty.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <!-- <link rel="icon" href="./images/favicon.svg"> -->
+
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/jquery.event.move.js"></script>
+  <script src="./js/jquery.twentytwenty.js"></script>
+  <script src="./js/bulma-carousel.min.js"></script>
+  <script src="./js/bulma-slider.min.js"></script>
+  <script src="./js/fontawesome.all.min.js"></script>
+
+  <!--MathJax-->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">LayerDiffusion: Layered Controlled Image Editing with Diffusion Models</h1>
+   
+          <div class="is-size-5 publication-authors">
+           
+            <span class="author-block">
+              <a href="index.html" rel="noopener noreferrer">
+                Pengzhi Li</a>
+                <sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Qinxuan Huang</a>
+                <sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Yikang Ding</a>
+                <sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Zhiheng Li</a>
+                <sup>1</sup>
+
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"> <sup>1</sup>Tsinghua Shenzhen International Graduate School, Tsinghua University</span>
+            <span class="author-block"> <sup>2</sup>Tsinghua Berkeley Shenzhen Institute, Tsinghua University</span>
+
+          </div>
+
+          <b style="font-size: 22px; color: black; ">SIGGRAPH Asia 2023 </b> <a style="font-size: 20px; color:#38a4ff;">(Technical communication)</a>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2305.18676" target="_blank" rel="noopener noreferrer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf" style="color: rgb(255, 255, 255)"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="./images/Poster_LayerDiffusion.pdf" target="_blank" rel="noopener noreferrer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Poster</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=cFK0n6htzXo" target="_blank" rel="noopener noreferrer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://github.com/zrealli/layerdiffusion" target="_blank" rel="noopener noreferrer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+
+          
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img id="teaser" width="100%" src="./images/F1.pdf" alt="T."/>
+      <!-- <h2 class="subtitle has-text-centered"> -->
+        Our method achieves layered image editing through text descriptions, enabling simultaneous modifications of backgrounds and specific subjects, 
+        such as background replacement, object resizing, and complex non-rigid changes.    
+          <!-- </h2> -->
+    </div>
+  </div>
+</section>
+
+
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            Text-guided image editing has recently experienced rapid development. 
+            However, simultaneously performing multiple editing actions on a single image, 
+            such as background replacement and specific subject attribute changes, 
+            while maintaining consistency between the subject and the background remains challenging. 
+            In this paper, we propose LayerDiffusion, a semantic-based layered controlled image editing method. 
+            Our method enables non-rigid editing and attribute modification of specific subjects while preserving their unique characteristics and seamlessly integrating them into new backgrounds. 
+            We leverage a large-scale text-to-image model and employ a layered controlled optimization strategy combined with layered diffusion training. 
+            During the diffusion process, an iterative guidance strategy is used to generate a final image that aligns with the textual description. 
+            Experimental results demonstrate the effectiveness of our method in generating highly coherent images that closely align with the given textual description. 
+            The edited images maintain a high similarity to the features of the input image and surpass the performance of current leading image editing methods. 
+            LayerDiffusion opens up new possibilities for controllable image editing.
+          </p>
+
+          <img id="method_train" width="100%" src="./images/F2.pdf" alt="e"/>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+
+<script>
+  $(window).on('load', function() {
+    bulmaCarousel.attach('#results-carousel-horizontal', {
+      slidesToScroll: 1,
+      slidesToShow: 3,
+      loop: true,
+      autoplay: true,
+    });
+
+    bulmaCarousel.attach('#results-carousel-vertical', {
+      slidesToScroll: 1,
+      slidesToShow: 5,
+      loop: true,
+      autoplay: true,
+    });
+
+    $(".twentytwenty-container-top").twentytwenty({
+      before_label: 'Input',
+      after_label: 'Ours',
+      default_offset_pct: 0.75,
+    });
+    $(".twentytwenty-container-bottom").twentytwenty({
+      before_label: 'LeRes',
+      after_label: 'Ours',
+      default_offset_pct: 0.5,
+    });
+  });
+</script>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Our method utilizes a layered controlled optimization strategy to refine text embeddings and a layered diffusion strategy to fine-tune the diffusion model. 
+            During inference, an iterative guidance strategy is employed to directly generate images aligning with the multiple editing actions described in the input text.          </p>
+          <img id="method_train" width="100%" src="./images/pipeline3.jpg" alt="e"/>
+  
+          <!-- <h3 class="title has-text-centered">
+            Video Depth Data Generation
+          </h3>
+
+          <p style="text-align: left;">
+            Example of our video depth generation approach. (a) Segmentation mask predicted by Detectron2. 
+            (b) The optical flow predicted by a single frame. (c) The original frame and the next warped frame using (b). 
+            (d) The original depth map and the next warped depth map using (b).
+        </p>
+        
+          <img id="method_train" width="100%" src="./images/03.jpg" alt="e"/>
+ -->
+
+
+  
+          <h3 class="title has-text-centered">
+            Comparison with other methods
+          </h3>
+
+          <p>
+            We primarily compare our proposed image editing method with previous text-driven methods, such as SDEdit, Imagic and PnP. 
+            It is worth noting that Imagic necessitates fine-tuning of both the network and text embeddings, while our method adopts a similar fine-tuning approach.
+            Our method generates the best results.
+        </p>
+
+          <img id="comparison" width="100%" src="./images/F3.pdf" alt="s"/>
+
+          <h3 class="title has-text-centered">
+            More Results
+          </h3>
+
+          <p>
+            We present more edited results. 
+            Each triplet consists of the original image on the left, the edited result on the right, and a small reference image enclosed within a red box.
+          </p>
+
+          <img id="comparison" width="100%" src="./images/supp_res.pdf" alt="s"/>
+
+
+          <p class="mt-5">
+            Refer to the pdf paper linked above for more details on qualitative, quantitative, and ablation studies.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+  </div>
+</section>
+
+
+<section class="section pt-0" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Citation</h2>
+    <pre class="selectable"><code>@incollection{li2023layerdiffusion,
+      title={Layerdiffusion: Layered controlled image editing with diffusion models},
+      author={Li, Pengzhi and Huang, Qinxuan and Ding, Yikang and Li, Zhiheng},
+      booktitle={SIGGRAPH Asia 2023 Technical Communications},
+      pages={1--4},
+      year={2023}
+    }
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer pt-4 pb-0">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website template based on
+            <a href="https://github.com/nerfies/nerfies.github.io">
+              Nerfies
+            </a>
+            and licensed under
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+              CC-BY-SA-4.0
+            </a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
