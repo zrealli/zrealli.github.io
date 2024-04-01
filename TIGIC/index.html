@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="TTuning-Free Image Customization with Image and Text Guidance">
+  <meta name="keywords" content="diffusion model, image customization, image editing">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <title>Tuning-Free Image Customization with Image and Text Guidance</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FWSVCGZTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-1FWSVCGZTG');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/bulma.min.css">
+  <link rel="stylesheet" href="./css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./css/twentytwenty.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <!-- <link rel="icon" href="./images/svg"> -->
+
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/jquery.event.move.js"></script>
+  <script src="./js/jquery.twentytwenty.js"></script>
+  <script src="./js/bulma-carousel.min.js"></script>
+  <script src="./js/bulma-slider.min.js"></script>
+  <script src="./js/fontawesome.all.min.js"></script>
+
+  <!--MathJax-->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Tuning-Free Image Customization with Image and Text Guidance</h1>
+   
+          <div class="is-size-5 publication-authors">
+           
+            <span class="author-block">
+              <a href="https://zrealli.github.io" rel="noopener noreferrer">
+                Pengzhi Li</a>
+                <sup>1#</sup>,
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Qiang Nie</a>
+                <sup>2#</sup>,
+            </span>
+
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Ying Chen</a>
+                <sup>2</sup>,
+
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+               Xi Jiang</a>
+                <sup>3</sup>,
+
+            </span>
+
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Kai Wu</a>
+                <sup>2</sup>,
+
+            </span>
+
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+              Yuhuan Lin</a>
+                <sup>2</sup>,
+
+            </span>
+
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Yong Liu</a>
+                <sup>2</sup>,
+            </span>
+
+          </span>
+          <span class="author-block">
+            <a href="index.html"  rel="noopener noreferrer">
+             Jinlong Peng</a>
+              <sup>2</sup>,
+
+          </span>
+            </span>
+              <span class="author-block">
+                <a href="index.html"  rel="noopener noreferrer">
+                Chengjie Wang</a>
+                  <sup>2</sup>,
+
+              </span>
+            
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Feng Zheng</a>
+                <sup>3*</sup>
+
+            </span>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"> <sup>1</sup>Tsinghua Shenzhen International Graduate School, Tsinghua University</span>
+            <span class="author-block"> <sup>2</sup>Tencent Youtu Lab</span>
+            <span class="author-block"> <sup>3</sup>Southern University of Science and Technology</span>
+
+
+          </div>
+
+          </div>
+ 
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2403.12658" target="_blank" rel="noopener noreferrer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf" style="color: rgb(255, 255, 255)"></i>
+                  </span>
+                  <span>Paper (Arxiv)</span>
+                </a>
+              </span>
+
+              <!-- Code Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming)</span>
+                </a>
+              </span> -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<script>
+  $(window).on('load', function() {
+    bulmaCarousel.attach('#results-carousel-horizontal', {
+      slidesToScroll: 1,
+      slidesToShow: 3,
+      loop: true,
+      autoplay: true,
+    });
+
+    bulmaCarousel.attach('#results-carousel-vertical', {
+      slidesToScroll: 1,
+      slidesToShow: 5,
+      loop: true,
+      autoplay: true,
+    });
+
+    $(".twentytwenty-container-top").twentytwenty({
+      before_label: 'Input',
+      after_label: 'Ours',
+      default_offset_pct: 0.75,
+    });
+    $(".twentytwenty-container-bottom").twentytwenty({
+      before_label: 'DPT',
+      after_label: 'Ours',
+      default_offset_pct: 0.5,
+    });
+  });
+</script>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img id="teaser" width="100%" src="./images/figure_00.pdf" alt="T." />
+      <!-- <h2 class="subtitle has-text-centered"> -->
+        Performance overview of the proposed method in image customization: (a) The proposed method enables the generation of any subject depicted in the reference image within the designated image region to be edited. 
+        Additionally, it allows for modifying the generated subject's attributes based on the user's text description. 
+        (b) Our method can extend to scenarios involving multiple subjects from different reference images and multiple regions to be edited. 
+        (c) Driven by text, the proposed method can transform the subject in the reference image into a different domain, such as converting it into a cartoon style.
+           </a>
+           </div>
+  </div>
+</section>
+
+
+
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            1. We propose a tuning-free image customization framework, enabling content manipulation in the given region(s) of an image according to user-provided example images and text descriptions.
+            2. We propose a self-attention blending strategy for content customization, which addresses the issue of unintended changes in non-target area in previous image editing methods and achieves precise editing of specific theme attributes.
+            3. We propose a blended self-attention strategy for content customization, which addresses the issue 
+            4. Our method outperforms previous approaches in human and quantitative evaluations, providing an efficient solution for numerous practical applications such as image synthesis, design, and creative photography.
+
+
+
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <!-- <h2 class="title is-3">Method</h2> -->
+
+        <div class="content has-text-justified">
+          <h3 class="title has-text-centered" class="title is-3">
+            Method
+          </h3>
+          <p>
+            The pipeline of our method. Given an image $I$ to be edited and the target region(s) $R$ that needs edition, our goal is to synthesize an image $I_e$ that not only has the subject in the reference image(s) $I_r$ but also satisfies the description of text $T$ in a tuning-free manner. 
+            The text $T$ is utilized for controlling the attributes of the customized subject in $R$.
+            This is a challenging task due to the following issues: 
+            (1) maintaining consistency in the non-target region between $I$ and $I_e$; 
+            (2) ensuring semantic coherence between the generated subject and the reference subject in the target region; 
+            (3) accurately controlling the attributes of the generated subject without changing the other part according to the text description; and 
+            (4) seamlessly integrating the generated subject in $R$ with the non-target region content in $I_e$.
+          <img id="method_train" width="100%" src="./images/pipeline.pdf" alt="e"/>
+  
+
+  
+          <h3 class="title has-text-centered" class="title is-3">
+            Experiments
+          </h3>
+
+          <p>
+            Qualitative comparison with existing state-of-the-art methods. PBE and AnyDoor are methods guided only by images, while BLD uses text as the only guidance. 
+            To evaluate the efficiency of our method, we set up an additional group of two-step methods, including first using image stitching and harmonization followed by text guided image editing (DCCF + IP2P, MasaCtrl) and another method involving editing first and then harmonizing (IP2P + DCCF). 
+            These methods can only focus on text or image, global or local editing. Our method outperforms all these methods and overcomes their limitations, achieving text and image guided local editing and generation.
+        </p>
+
+          <img id="comparison" width="100%" src="./images/comparisions.pdf" alt="s"/>
+
+          <h3 class="title has-text-centered">
+            Potential applications
+          </h3>
+          <p>
+            Some creative applications. As shown in the first row, given an indoor scene and a collection of materials, our method can edit the interior decorations and furnishings using reference subjects from the material library. 
+            Our method can also be applied to cross-domain graphic design creations, as shown in the second column, where cartoon characters are generated directly in real-world scenes.          </p>
+
+          <img id="comparison" width="100%" src="./images/application.pdf" alt="s"/>
+
+          <h3 class="title has-text-centered">
+            More results
+          </h3>
+
+
+          <p>
+            We show more visual comparison results. Our method outperforms all these methods and overcomes their limitations, achieving outstanding generative performance.          </p>
+
+          <img id="comparison" width="100%" src="./images/results_01.pdf" alt="s"/>
+
+          <img id="comparison" width="100%" src="./images/results_02.pdf" alt="s"/>
+
+
+
+          <p class="mt-5">
+            Refer to the pdf paper linked above for more details on qualitative, quantitative, and ablation studies.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+  </div>
+</section>
+
+
+<section class="section pt-0" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Citation</h2>
+    <pre class="selectable"><code>@article{li2024tuning,
+      title={Tuning-Free Image Customization with Image and Text Guidance},
+      author={Li, Pengzhi and Nie, Qiang and Chen, Ying and Jiang, Xi and Wu, Kai and Lin, Yuhuan and Liu, Yong and Peng, Jinlong and Wang, Chengjie and Zheng, Feng},
+      journal={arXiv preprint arXiv:2403.12658},
+      year={2024}
+    }
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer pt-4 pb-0">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website template based on
+            <a href="https://github.com/nerfies/nerfies.github.io">
+              Nerfies
+            </a>
+            and licensed under
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+              CC-BY-SA-4.0
+            </a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
