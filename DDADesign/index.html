@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Generating Daylight-driven Architectural Design via Diffusion Models">
+  <meta name="keywords" content="architectural design, diffusion model">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <title>Generating Daylight-driven Architectural Design via Diffusion Models</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FWSVCGZTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-1FWSVCGZTG');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/bulma.min.css">
+  <link rel="stylesheet" href="./css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./css/twentytwenty.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <!-- <link rel="icon" href="./images/favicon.svg"> -->
+
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/jquery.event.move.js"></script>
+  <script src="./js/jquery.twentytwenty.js"></script>
+  <script src="./js/bulma-carousel.min.js"></script>
+  <script src="./js/bulma-slider.min.js"></script>
+  <script src="./js/fontawesome.all.min.js"></script>
+
+  <!--MathJax-->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Generating Daylight-driven Architectural Design via Diffusion Models</h1>
+   
+          <div class="is-size-5 publication-authors">
+           
+            <span class="author-block">
+              <a href="index.html" rel="noopener noreferrer">
+                Pengzhi Li</a>
+                <sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Baijuan Li</a>
+                <sup>2</sup>
+            </span>
+
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"> <sup>1</sup>Tsinghua Shenzhen International Graduate School, Tsinghua University</span>
+            <span class="author-block"> <sup>2</sup>School of Architecture and Urban Planning, Shenzhen University</span>
+
+          </div>
+
+          <!-- <b style="font-size: 22px; color: black; ">CVPR-W 2024</b></a> -->
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2404.13353" target="_blank" rel="noopener noreferrer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf" style="color: rgb(255, 255, 255)"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- Code Link. -->
+              <!-- <span class="link-block">
+                <a href="./images/Poster_LayerDiffusion.pdf" target="_blank" rel="noopener noreferrer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Poster</span>
+                </a>
+              </span> -->
+
+              <span class="link-block">
+                <a href="https://github.com/unlimitedli/DDADesign" target="_blank" rel="noopener noreferrer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+
+          
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img id="teaser" width="100%" src="./images/teaser.pdf" alt="T."/>
+      <!-- <h2 class="subtitle has-text-centered"> -->
+        We propose a novel AI-aided architectural design method. We first generate numerous massing models as shown in (a). 
+        Then, a specific massing model (b) is selected. Following this, guided by a daylight-driven strategy, we refine the architectural façade depicted in (d), achieving efficient generations of the architectural design in (e) by using diffusion models.
+          <!-- </h2> -->
+    </div>
+  </div>
+</section>
+
+
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            In recent years, the rapid development of large-scale models has made new possibilities for interdisciplinary fields such as architecture. 
+            In this paper, we present a novel daylight-driven AI-aided architectural design method. 
+            Firstly, we formulate a method for generating massing models, producing architectural massing models using random parameters quickly. 
+            Subsequently, we integrate a daylight-driven façade design strategy, accurately determining window layouts and applying them to the massing models. 
+            Finally, we seamlessly combine a large-scale language model with a text-to-image model, enhancing the efficiency of generating visual architectural design renderings. 
+            Experimental results demonstrate that our approach supports architects' creative inspirations and pioneers novel avenues for architectural design development.
+          </p>
+
+
+          <ul>
+            <li>We present a novel AI-aided architectural design method driven by daylight, enabling an end-to-end generation from massing models to architectural designs. This process offers support for architects' creative inspirations.</li>
+            <li>We are the first to incorporate daylight factors into deep learning-based architectural generation methods and present a strategy for constructing an architectural daylighting dataset.</li>
+            <li>We seamlessly integrate large-scale language models with text-to-image models, enhancing the efficiency of generating visual architectural design renderings.</li>
+          </ul>
+          
+
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+
+<script>
+  $(window).on('load', function() {
+    bulmaCarousel.attach('#results-carousel-horizontal', {
+      slidesToScroll: 1,
+      slidesToShow: 3,
+      loop: true,
+      autoplay: true,
+    });
+
+    bulmaCarousel.attach('#results-carousel-vertical', {
+      slidesToScroll: 1,
+      slidesToShow: 5,
+      loop: true,
+      autoplay: true,
+    });
+
+    $(".twentytwenty-container-top").twentytwenty({
+      before_label: 'Input',
+      after_label: 'Ours',
+      default_offset_pct: 0.75,
+    });
+    $(".twentytwenty-container-bottom").twentytwenty({
+      before_label: 'LeRes',
+      after_label: 'Ours',
+      default_offset_pct: 0.5,
+    });
+  });
+</script>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Our pipeline shows an AI-aided architectural design workflow. Massing Generation (MG) is the module for generating architectural massing models, DDS is the daylight-driven strategy, and Architectural Design (ADG) is the module utilizing large-scale models to generate architectural designs.        
+            <img id="method_train" width="100%" src="./images/pipeline_day.pdf" alt="e"/>
+
+  
+
+          <h3 class="title has-text-centered">
+            Daylight-driven strategy
+          </h3>
+
+          <p>
+            we present a façade generation approach centered around daylighting. 
+            Given the lack of readily available daylighting data, we undertake a series of steps to construct a dedicated dataset of daylighting maps for training the LoRA (Low-Rank Adaptation) model. 
+            We then input representative sectional profiles of massing models into the trained model to generate corresponding daylighting maps. 
+            This process accurately determines window layouts and precisely integrates them onto the massing models.        
+          </p>
+
+
+          <!-- <img id="comparison" width="100%" src="./images/Daylight.pdf" alt="s"/> -->
+
+
+  
+          <h3 class="title has-text-centered">
+            Architectural design generation
+          </h3>
+
+          <p>
+            We employ random parameters to generate massing models, serving as foundational elements for architectural design. 
+            As illustrated in Figure 5, our approach initially extracts three sectional profiles from contour lines. 
+            We then generate daylighting maps using the LoRA model, filtering them meticulously to ensure plausible architectural façade designs. 
+            Based on these filtered maps, we create façade window profiles. Leveraging diverse architectural text prompts, we generate distinctive design proposals showcased in (d). These proposals excel in exterior proportions and visual renderings, providing architects with valuable support for realizing creative concepts efficiently.
+        </p>
+
+          <img id="comparison" width="100%" src="./images/renderings.pdf" alt="s"/>
+
+
+          <p class="mt-5">
+            Refer to the pdf paper linked above for more details on qualitative, quantitative, and ablation studies.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+  </div>
+</section>
+
+
+<section class="section pt-0" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Citation</h2>
+    <pre class="selectable"><code>@incollection{li2023layerdiffusion,
+      title={Generating Daylight-driven Architectural Design via Diffusion Models},
+      author={Li, Pengzhi and Li, Baijuan},
+      booktitle={arXiv preprint arXiv:2404.13353},
+      year={2024}
+    }
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer pt-4 pb-0">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website template based on
+            <a href="https://github.com/nerfies/nerfies.github.io">
+              Nerfies
+            </a>
+            and licensed under
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+              CC-BY-SA-4.0
+            </a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
