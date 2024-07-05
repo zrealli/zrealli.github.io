@@ -33,6 +33,8 @@
 
 
 	</head>
+
+	
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,12 +50,17 @@
 				flex-wrap: wrap;
 				justify-content: space-between;
 				align-items: center;
-				padding: 10px 0;
+				padding: 1px 0;
 				background-color: rgba(0, 0, 0, 0.07); /* 初始状态为透明 */
-				transition: background-color 0.3s;
+				transition: background-color 0.3s, height 0.3s, padding 0.3s;
 			}
 			.header-top.scrolled {
 				background-color: rgba(255, 255, 255, 0.33); /* 滚动后变为1/3透明色 */
+				height: 50px; /* 滚动后变窄 */
+				padding: 2px 0; /* 滚动后内边距变小 */
+			}
+			.header-top.scrolled .social-links {
+				display: none; /* 滚动后隐藏图标 */
 			}
 			.header-top-left,
 			.header-top-right {
@@ -67,8 +74,8 @@
 			}
 			.buttons-area button {
 				margin: 5px;
-				padding: 10px 15px;
-				font-size: 16px;
+				padding: 5px 5px;
+				font-size: 18px;
 				color: white;
 				background: none;
 				border: none; /* 去掉边框 */
@@ -121,11 +128,11 @@
 				.header-top-right {
 					justify-content: center;
 					width: 100%;
-					margin: 5px 0;
+					margin: 1px 0;
 				}
 				.buttons-area button {
 					font-size: 14px;
-					padding: 8px 12px;
+					padding: 3px 3px;
 				}
 			}
 		</style>
