@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="LDGen: Enhancing Text-to-Image Synthesis via Large Language Model-Driven Language Representation">
+  <meta name="keywords" content="diffusion model, image generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <title>LDGen: Enhancing Text-to-Image Synthesis via Large Language Model-Driven Language Representation</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FWSVCGZTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-1FWSVCGZTG');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/bulma.min.css">
+  <link rel="stylesheet" href="./css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./css/twentytwenty.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <!-- <link rel="icon" href="./images/svg"> -->
+
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/jquery.event.move.js"></script>
+  <script src="./js/jquery.twentytwenty.js"></script>
+  <script src="./js/bulma-carousel.min.js"></script>
+  <script src="./js/bulma-slider.min.js"></script>
+  <script src="./js/fontawesome.all.min.js"></script>
+
+  <!--MathJax-->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">LDGen: Enhancing Text-to-Image Synthesis via Large Language Model-Driven Language Representation</h1>
+   
+          <div class="is-size-5 publication-authors">
+           
+            <span class="author-block">
+              <a href="https://zrealli.github.io" rel="noopener noreferrer">
+                Pengzhi Li</a>
+                <sup></sup>,
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Pengfei Yu</a>
+                <sup>#</sup>,
+            </span>
+
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Zide Liu</a>
+                <sup></sup>,
+
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+               Wei He</a>
+                <sup></sup>,
+
+            </span>
+
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Xuhao Pan</a>
+                <sup></sup>,
+
+            </span>
+
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+              Xudong Rao</a>
+                <sup></sup>,
+
+            </span>
+
+            </span>
+            <span class="author-block">
+              <a href="index.html"  rel="noopener noreferrer">
+                Tao Wei</a>
+                <sup></sup>,
+            </span>
+
+          </span>
+          <span class="author-block">
+            <a href="index.html"  rel="noopener noreferrer">
+             Wei Chen</a>
+              <sup>*</sup>,
+
+
+
+            </span>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block "style="font-size: 22px"> <sup>1</sup>Li Auto Inc.</span> 
+
+
+
+          </div>
+          <span class="author-block "style="font-size: 17px"> <sup>#</sup>Project leader.</span>            <span class="author-block "style="font-size: 17px"> <sup>*</sup>Corresponding author.</span> 
+
+
+          <!-- <b style="font-size: 30px; color: black; ">ECCV 2024 </b> -->
+
+          </div>
+ 
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/25" target="_blank" rel="noopener noreferrer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf" style="color: rgb(255, 255, 255)"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/zrealli/LDGen" target="_blank" rel="noopener noreferrer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming soon)</span>
+                </a>
+              </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<script>
+  $(window).on('load', function() {
+    bulmaCarousel.attach('#results-carousel-horizontal', {
+      slidesToScroll: 1,
+      slidesToShow: 3,
+      loop: true,
+      autoplay: true,
+    });
+
+    bulmaCarousel.attach('#results-carousel-vertical', {
+      slidesToScroll: 1,
+      slidesToShow: 5,
+      loop: true,
+      autoplay: true,
+    });
+
+    $(".twentytwenty-container-top").twentytwenty({
+      before_label: 'Input',
+      after_label: 'Ours',
+      default_offset_pct: 0.75,
+    });
+    $(".twentytwenty-container-bottom").twentytwenty({
+      before_label: 'DPT',
+      after_label: 'Ours',
+      default_offset_pct: 0.5,
+    });
+  });
+</script>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img id="teaser" width="100%" src="./images/teaser.pdf" alt="T." />
+      <!-- <h2 class="subtitle has-text-centered"> -->
+        Generated image samples from LDGen. We present a composed prompt with each language in a different color, along with the corresponding image that exhibits high aesthetic quality and text-image alignment.
+           </a>
+           </div>
+  </div>
+</section>
+
+
+
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            In this paper, we introduce LDGen, a novel method for integrating large language models (LLMs) into existing text-to-image diffusion models while minimizing computational demands. Traditional text encoders, such as CLIP and T5, 
+              exhibit limitations in multilingual processing, hindering image generation across diverse languages. 
+              We address these challenges by leveraging the advanced capabilities of LLMs. Our approach employs a language 
+              representation strategy that applies hierarchical caption optimization and human instruction techniques to derive 
+              precise semantic information,. Subsequently, we incorporate a lightweight adapter and a cross-modal refiner to facilitate 
+              efficient feature alignment and interaction between LLMs and image features. LDGen reduces training time and 
+              enables <b style="font-size: 18px">zero-shot multilingual image generation</b>. Experimental results indicate that our method surpasses baseline models
+               in both prompt adherence and image aesthetic quality, while seamlessly supporting multiple languages.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <!-- <h3 class="title has-text-centered" class="title is-2">
+            Method
+          </h3> -->
+          <p>
+            Overview of LDGen. The dashed box shows our language representation strategy, with the bottom is our LLM alignment and cross-modal refiner training process. The detailed design of the cross-modal refiner is shown in the green box on the right.
+          <p>
+            1. We present LDGen, which efficiently integrates LLM into existing text encoder-based diffusion models and <b>supports zero-shot multilingual text-to-image generation.</b>
+            <p>
+            2. We propose a language representation strategy that leverages the capabilities of LLM through hierarchical caption optimization and human instruction strategies.
+            <p>
+            3. We introduce LLM alignment and a cross-modal refiner to achieve LLM feature alignment and enhance interaction between LLM and image features, enhancing the semantic consistency of conditions.
+            
+
+            <img id="method_train" width="100%" src="./images/pipeline1.pdf" alt="e"/>
+  
+
+            <h2 class="title has-text-centered">Comparisons</h2>
+
+          <!-- <h3 class="title has-text-centered" class="title is-3">
+            Comparisons
+          </h3> -->
+
+          <p>
+            Comparison of our method with recent enhancement generative models ELLA, baseline Models SDXL and PixArt-$\alpha$. Our method achieves the best results in terms of instruction adherence and visual appeal.
+        </p>
+
+          <img id="comparison" width="100%" src="./images/main_compare.pdf" alt="s"/>
+<!-- 
+          <h3 class="title has-text-centered">
+            Multilingual qualitative results
+          </h3> -->
+          <h2 class="title has-text-centered"> Multilingual qualitative results
+          </h2>
+
+          <p>
+            Multilingual results. For each panel's eight images, we generate them using eight different languages but only display the prompt in one of the languages used. Note that LDGen uses only English prompts during training but achieves zero-shot multilingual generation due to the capabilities of the LLM.
+          <img id="comparison" width="100%" src="./images/multi.png" alt="s"/>
+
+          <!-- <h3 class="title has-text-centered">
+            More results
+          </h3>
+
+
+          <p>
+            We show more visual comparison results. Our method outperforms all these methods and overcomes their limitations, achieving outstanding generative performance.          </p>
+
+          <img id="comparison" width="100%" src="./images/results_01.pdf" alt="s"/>
+
+          <img id="comparison" width="100%" src="./images/results_02.pdf" alt="s"/> -->
+
+
+
+          <p class="mt-5">
+            Refer to the pdf paper linked above for more details on qualitative, quantitative, and ablation studies.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+  </div>
+</section>
+
+
+<section class="section pt-0" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Citation</h2>
+    <!-- <pre class="selectable"><code>@inproceedings{li2024tuning,
+      title={Tuning-Free Image Customization with Image and Text Guidance}, 
+      author={Li, Pengzhi and Nie, Qiang and Chen, Ying and Jiang, Xi and Wu, Kai and Lin, Yuhuan and Liu, Yong and Peng, Jinlong and Wang, Chengjie and Zheng, Feng},
+      booktitle={European Conference on Computer Vision},
+      year={2024}
+  }   -->
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer pt-4 pb-0">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website template based on
+            <a href="https://github.com/nerfies/nerfies.github.io">
+              Nerfies
+            </a>
+            and licensed under
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+              CC-BY-SA-4.0
+            </a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
